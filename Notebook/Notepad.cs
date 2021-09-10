@@ -151,19 +151,42 @@ namespace Notebook
             }
         }
         /// <summary>
-        /// Сортировка структуры по дате
+        /// Сортировка структуры по дате добавления
         /// </summary>
         public void SortByDataAdded()
         {
-            for(int i = 0; i < index; i++)
+            Array.Sort(this.notes,SortByDataAdd);
+            
+            int SortByDataAdd(Note x, Note y)
             {
-                for(int j= i+1; j < index; j++)
+                if (x == null)
                 {
-                    if(this[i].dateAdded > this[j].dateAdded)
+                    if (y == null)
                     {
-                        var temp = this[i];
-                        this[i] = this[j];
-                        this[j] = temp;
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    if (y == null)
+                    {
+                        return -1;
+                    }
+                    else
+                    {
+                        if (x.dateAdded == y.dateAdded)
+                        {
+                            return 0;
+                        }
+                        else if (x.dateAdded > y.dateAdded)
+                        {
+                            return 1;
+                        }
+                        else return -1;
                     }
                 }
             }
